@@ -50,5 +50,21 @@ public class ColorPlanes {
   
   img.updatePixels();
   }
+  void inversionPlane(PImage img) {
+    img.loadPixels();
+    
+    for (int i = 0; i < img.pixels.length; i++) {
+    color pixel =img.pixels[i];
+    int r = (int) red(pixel);
+    r = r ^ 255 ;
+    int g = (int) green(pixel);
+    g = g ^ 255;
+    int b = (int) blue(pixel);
+    b = b ^ 255;
+    img.pixels[i] = color(r,g,b);
+  }
+  
+  img.updatePixels();
+  }
   
 }
