@@ -1,6 +1,8 @@
 # Project Description
 
-Rebuild of Stegsolve with additional features
 
 # Features
+* Show the images in different planes
+
 Draw your message where you want it
+
