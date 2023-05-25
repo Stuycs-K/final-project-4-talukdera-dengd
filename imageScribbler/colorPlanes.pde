@@ -169,6 +169,90 @@ img.pixels[i] = gbit;
 img.updatePixels();
 }
 
+// red planes
+void redPlane0(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) red(pixel)) >> 0) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void redPlane1(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) red(pixel)) >> 1) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void redPlane2(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) red(pixel)) >> 2) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void redPlane3(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) red(pixel)) >> 3) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void redPlane4(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) red(pixel)) >> 4) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void redPlane5(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) red(pixel)) >> 5) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void redPlane6(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) red(pixel)) >> 6) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void redPlane7(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) red(pixel)) >> 7) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+
+// blue planes
+
 
   
   
