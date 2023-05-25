@@ -333,6 +333,87 @@ img.pixels[i] = gbit;
 img.updatePixels();
 }
 
+// alpha planes
+void alphaPlane0(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) alpha(pixel)) >> 0) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void alphaPlane1(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) alpha(pixel)) >> 1) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void alphaPlane2(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) alpha(pixel)) >> 2) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void alphaPlane3(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) alpha(pixel)) >> 3) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void alphaPlane4(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) alpha(pixel)) >> 4) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void alphaPlane5(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) alpha(pixel)) >> 5) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void alphaPlane6(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) alpha(pixel)) >> 6) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void alphaPlane7(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) alpha(pixel)) >> 7) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
 
   
   
