@@ -84,355 +84,76 @@ public class ColorPlanes {
   }
   
   // green 5
-  void greenPlane0(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) green(pixel)) >> 0) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-
-  void greenPlane1(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) green(pixel)) >> 1) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-
-  void greenPlane2(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) green(pixel)) >> 2) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-
-  void greenPlane3(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) green(pixel)) >> 3) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  
-  void greenPlane4(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) green(pixel)) >> 4) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  
-  void greenPlane5(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) green(pixel)) >> 5) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  
-  void greenPlane6(PImage img) {
-    img.loadPixels();
-      for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) green(pixel)) >> 6) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  void greenPlane7(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) green(pixel)) >> 7) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-
-  // red planes
-  void redPlane0(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) red(pixel)) >> 0) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  
-  void redPlane1(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) red(pixel)) >> 1) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  
-  void redPlane2(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) red(pixel)) >> 2) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  
-  void redPlane3(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) red(pixel)) >> 3) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  void redPlane4(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) red(pixel)) >> 4) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  
-  void redPlane5(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) red(pixel)) >> 5) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  
-  void redPlane6(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) red(pixel)) >> 6) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  
-  void redPlane7(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) red(pixel)) >> 7) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  
-  // blue planes
-  void bluePlane0(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) blue(pixel)) >> 0) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  
-  void bluePlane1(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) blue(pixel)) >> 1) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  
-  void bluePlane2(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) blue(pixel)) >> 2) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-  img.updatePixels();
-  }
-  
-  void bluePlane3(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) blue(pixel)) >> 3) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  
-  void bluePlane4(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) blue(pixel)) >> 4) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  void bluePlane5(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) blue(pixel)) >> 5) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  
-  void bluePlane6(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) blue(pixel)) >> 6) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-
-  void bluePlane7(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) blue(pixel)) >> 7) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
-  
-  // alpha planes
-  void alphaPlane0(PImage img) {
+  void greenBitPlane(PImage img, int plane) {
+    
+    if (plane >= 0 && plane <= 7){
       img.loadPixels();
-      for (int i = 0; i < img.pixels.length; i++) {
-        color pixel =img.pixels[i];
-        int g = (((int) alpha(pixel)) >> 0) & 1;
-        int gbit = color(g * 255);
-        img.pixels[i] = gbit;
-      }
-    img.updatePixels();
-  }
-  
-  void alphaPlane1(PImage img) {
-    img.loadPixels();
     for (int i = 0; i < img.pixels.length; i++) {
       color pixel =img.pixels[i];
-      int g = (((int) alpha(pixel)) >> 1) & 1;
+      int g = (((int) green(pixel)) >> plane) & 1;
       int gbit = color(g * 255);
       img.pixels[i] = gbit;
     }
     img.updatePixels();
+    }
   }
   
-  void alphaPlane2(PImage img) {
-    img.loadPixels();
+  void redBitPlane(PImage img, int plane) {
+    
+    if (plane >= 0 && plane <= 7){
+      img.loadPixels();
     for (int i = 0; i < img.pixels.length; i++) {
       color pixel =img.pixels[i];
-      int g = (((int) alpha(pixel)) >> 2) & 1;
+      int g = (((int) red(pixel)) >> plane) & 1;
       int gbit = color(g * 255);
       img.pixels[i] = gbit;
     }
     img.updatePixels();
+    }
   }
   
-  void alphaPlane3(PImage img) {
-    img.loadPixels();
+  void blueBitPlane(PImage img, int plane) {
+    
+    if (plane >= 0 && plane <= 7){
+      img.loadPixels();
     for (int i = 0; i < img.pixels.length; i++) {
       color pixel =img.pixels[i];
-      int g = (((int) alpha(pixel)) >> 3) & 1;
+      int g = (((int) blue(pixel)) >> plane) & 1;
       int gbit = color(g * 255);
       img.pixels[i] = gbit;
     }
     img.updatePixels();
+    }
   }
   
-  void alphaPlane4(PImage img) {
-    img.loadPixels();
+  void alphaBitPlane(PImage img, int plane) {
+    
+    if (plane >= 0 && plane <= 7){
+      img.loadPixels();
     for (int i = 0; i < img.pixels.length; i++) {
       color pixel =img.pixels[i];
-      int g = (((int) alpha(pixel)) >> 4) & 1;
+      int g = (((int) alpha(pixel)) >> plane) & 1;
       int gbit = color(g * 255);
       img.pixels[i] = gbit;
     }
     img.updatePixels();
+    }
   }
   
-  void alphaPlane5(PImage img) {
-    img.loadPixels();
+  void randomBitPlane(PImage img, int plane) {
+    plane = 3;
+    if (plane >= 0 && plane <= 7){
+      img.loadPixels();
     for (int i = 0; i < img.pixels.length; i++) {
       color pixel =img.pixels[i];
-      int g = (((int) alpha(pixel)) >> 5) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
+      int g = (((int) green(pixel)) >> plane) & 1;
+      int r = (((int) red(pixel)) >> plane) & 1;
+      int b = (((int) blue(pixel)) >> plane) & 1;
+      //int gbit = color(g * 255);
+      img.pixels[i] = color(r,g,b);
     }
     img.updatePixels();
-  }
-  
-  void alphaPlane6(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) alpha(pixel)) >> 6) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
     }
-    img.updatePixels();
   }
-  
-  void alphaPlane7(PImage img) {
-    img.loadPixels();
-    for (int i = 0; i < img.pixels.length; i++) {
-      color pixel =img.pixels[i];
-      int g = (((int) alpha(pixel)) >> 7) & 1;
-      int gbit = color(g * 255);
-      img.pixels[i] = gbit;
-    }
-    img.updatePixels();
-  }
+
 }
