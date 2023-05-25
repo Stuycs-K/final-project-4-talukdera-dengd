@@ -16,7 +16,7 @@ void setup() {
 
   //img.updatePixels();
   ColorPlanes ref = new ColorPlanes();
-  ref.greenPlane7(img);
+  ref.redPlane4(img);
 
   //img.save("modifiedCat.png");
   image(img, 0, 0);

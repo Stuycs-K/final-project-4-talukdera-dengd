@@ -252,6 +252,86 @@ img.updatePixels();
 }
 
 // blue planes
+void bluePlane0(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) blue(pixel)) >> 0) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void bluePlane1(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) blue(pixel)) >> 1) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void bluePlane2(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) blue(pixel)) >> 2) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void bluePlane3(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) blue(pixel)) >> 3) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void bluePlane4(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) blue(pixel)) >> 4) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void bluePlane5(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) blue(pixel)) >> 5) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void bluePlane6(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) blue(pixel)) >> 6) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void bluePlane7(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) blue(pixel)) >> 7) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
 
 
   
