@@ -16,14 +16,14 @@ void setup() {
 
   //img.updatePixels();
   ColorPlanes ref = new ColorPlanes();
-  ref.inversionPlane(img);
+  ref.greenPlane7(img);
 
   //img.save("modifiedCat.png");
   image(img, 0, 0);
 }
 
 void draw() {
-  image(img, 0, 0);
+  image(img, 0, 0);        
 }
 
 //PImage img;

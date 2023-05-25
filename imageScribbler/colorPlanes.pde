@@ -1,5 +1,25 @@
 public class ColorPlanes {
   
+  void printBit(int x) {
+  if (x == 0) {
+    print(0);
+  } else {
+    print(1);
+  }
+}
+  
+  void printBinary(int x) {
+  printBit(x&128);
+  printBit(x&64);
+  printBit(x&32);
+  printBit(x&16);
+  printBit(x&8);
+  printBit(x&4);
+  printBit(x&2);
+  printBit(x&1);
+  println();
+}
+   
   void greenPlane(PImage img) {
     img.loadPixels();
     
@@ -66,5 +86,91 @@ public class ColorPlanes {
   
   img.updatePixels();
   }
+  
+  // green 5
+void greenPlane0(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) green(pixel)) >> 0) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void greenPlane1(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) green(pixel)) >> 1) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void greenPlane2(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) green(pixel)) >> 2) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void greenPlane3(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) green(pixel)) >> 3) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void greenPlane4(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) green(pixel)) >> 4) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void greenPlane5(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) green(pixel)) >> 5) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void greenPlane6(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) green(pixel)) >> 6) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+void greenPlane7(PImage img) {
+img.loadPixels();
+for (int i = 0; i < img.pixels.length; i++) {
+color pixel =img.pixels[i];
+int g = (((int) green(pixel)) >> 7) & 1;
+int gbit = color(g * 255);
+img.pixels[i] = gbit;
+}
+img.updatePixels();
+}
+
+
+  
+  
   
 }
