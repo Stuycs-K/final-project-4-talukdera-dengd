@@ -141,19 +141,62 @@ public class ColorPlanes {
   }
   
   void randomBitPlane(PImage img, int plane) {
-    plane = 3;
+    plane = 1;
+    int x= randomNumber(0,255);
+    int y = randomNumber(0,255);
+    int z = randomNumber(0,255);
+    int[] nums = new int[3];
+    nums[0]= x;
+    nums[1]= y;
+    nums[2] = z;
     if (plane >= 0 && plane <= 7){
       img.loadPixels();
     for (int i = 0; i < img.pixels.length; i++) {
       color pixel =img.pixels[i];
-      int g = (((int) green(pixel)) >> plane) & 1;
-      int r = (((int) red(pixel)) >> plane) & 1;
-      int b = (((int) blue(pixel)) >> plane) & 1;
+      int g = (((int) green(pixel)) >> plane)&1;
+      
+      //println(g);
+      int r = (((int) red(pixel)) >> plane)&1;
+      int b = (((int) blue(pixel)) >> plane)&1;
+      
+      //println(r);
+      
+      r *= randomNumber(0,255);
+      g *= randomNumber(0,255);
+      b *= randomNumber(0,255);
+      
+      //println(b);
       //int gbit = color(g * 255);
-      img.pixels[i] = color(r,g,b);
+      img.pixels[i] = color(r,g,b, 255);
     }
     img.updatePixels();
     }
   }
+  
+  int randomNumber(int a, int b) {
+        int range = b - a + 1;
+        int randomNumber = (int) (Math.random() * range) + a;
+        return randomNumber;
+  }
+  
+  void sketch(PImage img){
+    int h = 0;
+    int w = img.width;
+    
+    img.loadPixels();
+    
+    for (int i =0; i < img.pixels.length; i++){
+      if (i!=0 && i%w==0){
+        h++;
+      }
+      stroke(img.pixels[i]);
+      point(i%w,h);
+      
+    }
+    
+  }
+  
+  
+  
 
 }

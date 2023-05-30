@@ -1,8 +1,9 @@
 PImage img;
+ColorPlanes ref = new ColorPlanes();
 //import colorPlanes.pde;
 
 void setup() {
-  size(1200, 600);
+  size(  1200, 600);
   img = loadImage("modifiedCat.png");
   img.loadPixels();
 
@@ -15,15 +16,20 @@ void setup() {
   //}
 
   //img.updatePixels();
-  ColorPlanes ref = new ColorPlanes();
-  ref.blueBitPlane(img,3);
-
+  ref.redBitPlane(img,3);
+  
   //img.save("modifiedCat.png");
   image(img, 0, 0);
+  //draw();
 }
 
 void draw() {
-  image(img, 0, 0);        
+  //image(img, 0, 0);
+  //ref.sketch(img);
+  //rect(0,0,20,20);
+    //update(mouseX,mouse
+    //line(mouseX, mouseY, 20, 20);
+   println(mouseX + " : " + mouseY);
 }
 
 //PImage img;
