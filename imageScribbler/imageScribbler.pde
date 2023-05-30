@@ -1,6 +1,10 @@
+import java.util.*;
 PImage img;
+int counter = 0;
 ColorPlanes ref = new ColorPlanes();
 boolean drawing = false;
+ArrayList<int[]> indivPixels = new ArrayList<int[]>();
+
 //import colorPlanes.pde;
 
 void setup() {
@@ -8,15 +12,6 @@ void setup() {
   size(1200, 600);
   img.loadPixels();
 
-  //for (int i = 0; i < img.pixels.length; i++) {
-
-  //  color pixel =img.pixels[i];
-  //  int g = (int) green(pixel);
-  //  img.pixels[i] = color(0,g,0);
-
-  //}
-
-  //img.updatePixels();
   ref.redBitPlane(img,3);
   
   //img.save("modifiedCat.png");
@@ -27,15 +22,32 @@ void setup() {
 void draw() {
   //image(img, 0, 0);
   //stroke(color(0,0,0));
+  counter++;
+  println(counter);
   if (mousePressed) {
+    int[] temp = {mouseX,mouseY};
+    indivPixels.add(temp);
+    //println("New Array:");
+    print("yay");
     if (!drawing){
       background(255);
       drawing = true;
     }
-    stroke(color(0,0,0));
+    
+    }
+    if (counter % 500==0){ 
+      for (int[] point : indivPixels){
+        stroke(color((int) Math.random()*255,(int) Math.random()*255,(int) Math.random()*255));
+        fill((int) Math.random()*255,(int) Math.random()*255,(int) Math.random()*255);
+        ellipse(point[0],point[1],10,10);
+     }
+    
+    
+   
+    //stroke(color(0,0,0));
     //noStroke();
-    fill(0,0,0);
-    ellipse(mouseX,mouseY,10,10);
+    //fill(0,0,0);
+    //ellipse(mouseX,mouseY,10,10);
   }
   //ref.sketch(img);
   //rect(0,0,20,20);
@@ -44,13 +56,13 @@ void draw() {
   //println(mouseX + " : " + mouseY);
 }
 
-void mouseDragged() 
-{
-  stroke(color(0,0,0));
-    //noStroke();
-  fill(0,0,0);
-  ellipse(mouseX,mouseY,10,10);
-}
+//void mouseDragged() 
+//{
+//  stroke(color(0,0,0));
+//    //noStroke();
+//  fill(0,0,0);
+//  ellipse(mouseX,mouseY,10,10);
+//}
 
 //PImage img;
 
