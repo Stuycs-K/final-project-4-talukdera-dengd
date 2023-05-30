@@ -1,10 +1,11 @@
 PImage img;
 ColorPlanes ref = new ColorPlanes();
+boolean drawing = false;
 //import colorPlanes.pde;
 
 void setup() {
-  size(  1200, 600);
   img = loadImage("modifiedCat.png");
+  size(1200, 600);
   img.loadPixels();
 
   //for (int i = 0; i < img.pixels.length; i++) {
@@ -25,11 +26,30 @@ void setup() {
 
 void draw() {
   //image(img, 0, 0);
+  //stroke(color(0,0,0));
+  if (mousePressed) {
+    if (!drawing){
+      background(255);
+      drawing = true;
+    }
+    stroke(color(0,0,0));
+    //noStroke();
+    fill(0,0,0);
+    ellipse(mouseX,mouseY,10,10);
+  }
   //ref.sketch(img);
   //rect(0,0,20,20);
     //update(mouseX,mouse
     //line(mouseX, mouseY, 20, 20);
-   println(mouseX + " : " + mouseY);
+  //println(mouseX + " : " + mouseY);
+}
+
+void mouseDragged() 
+{
+  stroke(color(0,0,0));
+    //noStroke();
+  fill(0,0,0);
+  ellipse(mouseX,mouseY,10,10);
 }
 
 //PImage img;
