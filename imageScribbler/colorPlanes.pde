@@ -101,7 +101,7 @@ public class ColorPlanes {
   void redBitPlane(PImage img, int plane) {
     
     if (plane >= 0 && plane <= 7){
-      img.loadPixels();
+      //img.loadPixels();
     for (int i = 0; i < img.pixels.length; i++) {
       color pixel =img.pixels[i];
       int g = (((int) red(pixel)) >> plane) & 1;
