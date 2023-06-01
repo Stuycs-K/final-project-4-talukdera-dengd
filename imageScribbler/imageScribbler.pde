@@ -3,6 +3,7 @@ PImage img;
 int counter = 0;
 ColorPlanes ref = new ColorPlanes();
 Edit edit = new Edit();
+Sketch sketch = new Sketch();
 boolean drawing = false;
 ArrayList<int[]> indivPixels = new ArrayList<int[]>();
 
@@ -46,10 +47,10 @@ void draw() {
      int s = 500;
     if (counter >= 1000){
       //println(indivPixels);
-      edit.clearRedPlane(img,3);
-      edit.writeRedPlane(img,3,indivPixels); // points correct here
+      edit.clearBluePlane(img,5);
+      edit.writeBluePlane(img,5,indivPixels); // points correct here
       //ref.redBitPlane(img,3);
-      edit.redBitPlane(img,3);
+      sketch.redBitPlane(img,5);
       //image(img,0,0);
     } else if (counter > s) {
       background(255);
