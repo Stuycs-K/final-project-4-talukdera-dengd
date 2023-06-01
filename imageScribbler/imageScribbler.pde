@@ -25,8 +25,8 @@ void setup() {
   
   //}
   //println("done");
-  hide.hideImageInRedBitPlane(img,3,hide.blackAndWhitePlane(img));
-  ref.redBitPlane(img,3);
+  hide.hideImageInBlueBitPlane(img,5,img);
+  ref.blueBitPlane(img,5);
   //image(img,0,0);
   //draw();
 }

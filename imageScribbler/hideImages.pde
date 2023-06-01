@@ -16,7 +16,8 @@ public class hideImages{
     return pixVal;
   }
   
-  void hideImageInRedBitPlane(PImage img, int plane, int[] pixVal){
+  void hideImageInRedBitPlane(PImage img, int plane, PImage hide){
+    int[] pixVal = blackAndWhitePlane(hide);
     img.loadPixels();
     //edit.clearRedPlane(img,plane);
     for (int i = 0; i < pixVal.length; i++) {
@@ -32,6 +33,66 @@ public class hideImages{
       } else {
         // 0 - black
         r = r & ~(1 << plane);
+      }
+      //int c = (r >> plane)&1;
+      //println(p + " : " + c);
+      
+      //img.pixels[Math.abs((point[0]+1)*point[1])] = color(r,g,b);
+      img.pixels[i] = color(r,g,b);
+      //ellipse(point[0],point[1],10,10);
+      // this works such that we are getting the correct points
+      img.updatePixels();
+    }
+    
+  }
+  
+  void hideImageInGreenBitPlane(PImage img, int plane, PImage hide){
+    img.loadPixels();
+    int[] pixVal = blackAndWhitePlane(hide);
+    //edit.clearRedPlane(img,plane);
+    for (int i = 0; i < pixVal.length; i++) {
+      int p =pixVal[i];
+      color pixel =img.pixels[i];
+      int r = (int) red(pixel);
+      int g = (int) green(pixel);
+      int b = (int) blue(pixel);
+      
+      if (p==255) {
+        // 1 - white
+        g = g | bits2[plane];
+      } else {
+        // 0 - black
+        g = g & ~(1 << plane);
+      }
+      //int c = (r >> plane)&1;
+      //println(p + " : " + c);
+      
+      //img.pixels[Math.abs((point[0]+1)*point[1])] = color(r,g,b);
+      img.pixels[i] = color(r,g,b);
+      //ellipse(point[0],point[1],10,10);
+      // this works such that we are getting the correct points
+      img.updatePixels();
+    }
+    
+  }
+  
+  void hideImageInBlueBitPlane(PImage img, int plane, PImage hide){
+    img.loadPixels();
+    int[] pixVal = blackAndWhitePlane(hide);
+    //edit.clearRedPlane(img,plane);
+    for (int i = 0; i < pixVal.length; i++) {
+      int p =pixVal[i];
+      color pixel =img.pixels[i];
+      int r = (int) red(pixel);
+      int g = (int) green(pixel);
+      int b = (int) blue(pixel);
+      
+      if (p==255) {
+        // 1 - white
+        b = b | bits2[plane];
+      } else {
+        // 0 - black
+        b = b & ~(1 << plane);
       }
       //int c = (r >> plane)&1;
       //println(p + " : " + c);
