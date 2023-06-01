@@ -43,6 +43,8 @@ public class ColorPlanes {
   }
   
   void redPlane(PImage img) {
+    PImage copy = img.copy();
+    // change all the img to copy
     img.loadPixels();
     
     for (int i = 0; i < img.pixels.length; i++) {
@@ -50,7 +52,8 @@ public class ColorPlanes {
       int r = (int) red(pixel);
       img.pixels[i] = color(r,0,0);
     }
-    img.updatePixels();
+    copy.updatePixels();
+    image(copy,0,0);
   }
   
   void blackAndWhitePlane(PImage img) {
