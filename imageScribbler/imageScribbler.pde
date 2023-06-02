@@ -37,9 +37,16 @@ int rectColor;
 int highlightColor;
 
 int page;
+String mode = "original";
+int plane = 7;
+
+// Image Files
+PImage img;
+File selected;
+
 
 void setup() {
-  size(1200, 600);
+  size(1200, 650);
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
   rectColor = color(0);
@@ -101,7 +108,8 @@ void draw() {
     text("DRAW", drawRectX, drawRectY);
     text("COMPRESS", compressRectX, compressRectY);
   }
-  else if (page == 1) {
+  else if (page == 1 & img != null) {
+    
     update1(mouseX, mouseY);
     if (overAnotherImage) {
       fill(highlightColor);
@@ -137,6 +145,7 @@ void draw() {
     else {
       fill(rectColor);
     }
+    image(img,0,0);
     rect(modifyRectX, modifyRectY, modifyRectWidth, modifyRectHeight);
     fill(255);
     text("SELECT ANOTHER IMAGE", selectAnotherImageRectX, selectAnotherImageRectY);
@@ -144,6 +153,9 @@ void draw() {
     text(">", rightRectX, rightRectY);
     text("SAVE", saveRectX, saveRectY);
     text("DRAW", modifyRectX, modifyRectY); //add conditional here for draw mode
+    
+    
+    
   }
 }
 
@@ -225,6 +237,8 @@ void imageSelected(File selection) {
   }
   else {
     page = 1;
+    img = loadImage(selection.toString());
+    // We set up the img here properly
   }
 }
 
