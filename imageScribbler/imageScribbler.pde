@@ -131,6 +131,38 @@ void draw() {
     rect(selectAnotherImageRectX, selectAnotherImageRectY, selectAnotherImageRectWidth, selectAnotherImageRectHeight);
     if (overLeft) {
       fill(highlightColor);
+      fill(highlightColor);
+      if (mousePressed){
+        if (draw_mode) {
+         draw_mode = false;
+        if (modeCounter == 5) {
+          edit.writeRedPlane(img,plane,indivPixels);
+        } else if (modeCounter == 6) {
+          edit.writeGreenPlane(img,plane,indivPixels);
+        } else {
+          edit.writeBluePlane(img,plane,indivPixels);
+        }
+        
+        indivPixels.clear();
+        }
+        
+        if (modeCounter >= 5 & modeCounter <= modes.length-1){ // this advances the plane and modeCounter
+        if (plane < 7) {
+          plane++;
+        } else {
+          plane = 0;
+          if (modeCounter == 0) {
+            modeCounter = modes.length-1;
+          } else {
+            modeCounter --;
+          }
+        }    
+      } else if (modeCounter == 0) {
+        modeCounter = modes.length -1;
+      } else {
+        modeCounter --;
+      }
+      }
     }
     else {
       fill(rectColor);
@@ -148,6 +180,7 @@ void draw() {
         } else {
           edit.writeBluePlane(img,plane,indivPixels);
         }
+        indivPixels.clear();
         }
         
         if (modeCounter >= 5 & modeCounter <= modes.length-1){ // this advances the plane and modeCounter
@@ -209,7 +242,7 @@ void draw() {
         } else {
           edit.writeBluePlane(img,plane,indivPixels);
         }
-        
+        indivPixels.clear();
       }
     }
     else {
@@ -349,6 +382,8 @@ void imageSelected(File selection) {
   else {
     page = 1;
     img = loadImage(selection.toString());
+    modeCounter = 0;
+    plane = 7;
     // We set up the img here properly
   }
 }
