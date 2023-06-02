@@ -404,7 +404,7 @@ void draw() {
           colorplanes.greyPlane(img);
         }
     }
-    image(img,0,0);
+    
     rect(rightRectX, rightRectY, rightRectSize, rightRectSize);
     
         rect(save2RectX, save2RectY, save2RectWidth, save2RectHeight);
