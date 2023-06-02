@@ -236,8 +236,8 @@ void imageSelected(File selection) {
     println("An image was not selected");
   }
   else {
-    page = 1;
     img = loadImage(selection.toString());
+    page = 1;
     // We set up the img here properly
   }
 }
