@@ -365,7 +365,7 @@ void mousePressed() {
 
 void mouseDragged() 
 {
-  if (draw_mode & mouseX < img.width & mouseY < img.height){
+  if (page==1 & draw_mode & mouseX < img.width & mouseY < img.height){
   int[] temp = {mouseX,mouseY};
   indivPixels.add(temp);
   stroke(color(0,0,0));
