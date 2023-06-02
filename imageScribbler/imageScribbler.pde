@@ -4,6 +4,7 @@ Edit edit = new Edit();
 Sketch sketch = new Sketch();
 hideImages hide = new hideImages();
 ColorPlanes colorplanes = new ColorPlanes();
+//hide.method
 // other classes
 
 int drawRectX, drawRectY;
