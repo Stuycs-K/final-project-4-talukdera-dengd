@@ -1,5 +1,6 @@
 // other classes
 ColorPlanes colorplanes = new ColorPlanes();
+Edit edit = new Edit();
 
 int drawRectX, drawRectY;
 int drawRectWidth = 200;
@@ -130,9 +131,10 @@ void draw() {
       fill(rectColor);
     }
     rect(leftRectX, leftRectY, leftRectSize, leftRectSize);
-    if (mousePressed & overRight) { // Arrow functionality
+    if (overRight) { // Arrow functionality
       fill(highlightColor);
-      if (modeCounter >= 5 & modeCounter <= modes.length-1){ // this advances the plane and modeCounter
+      if (mousePressed){
+        if (modeCounter >= 5 & modeCounter <= modes.length-1){ // this advances the plane and modeCounter
         if (plane > 0) {
           plane--;
         } else {
@@ -146,7 +148,7 @@ void draw() {
       } else {
         modeCounter ++;
       }
-      
+      }
       
     }
     else {
@@ -162,6 +164,21 @@ void draw() {
     rect(saveRectX, saveRectY, saveRectWidth, saveRectHeight);
     if (overModify) {
       fill(highlightColor);
+      
+      if (mousePressed){
+        if (!(modeCounter >= 5 & modeCounter <= modes.length-1)) {
+          modeCounter = 5;
+        }
+        
+        if (modeCounter == 5) {
+          edit.clearRedPlane(img,plane);
+        } else if (modeCounter == 6) {
+          edit.clearGreenPlane(img,plane);
+        } else {
+          edit.clearBluePlane(img,plane);
+        }
+        
+      }
     }
     else {
       fill(rectColor);
