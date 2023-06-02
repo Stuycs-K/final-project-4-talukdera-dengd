@@ -1,5 +1,6 @@
 import java.util.*;
 ArrayList<int[]> indivPixels = new ArrayList<int[]>();
+ArrayList<File> images = new ArrayList<File>();
 Edit edit = new Edit();
 Sketch sketch = new Sketch();
 hideImages hide = new hideImages();
@@ -516,7 +517,7 @@ void mousePressed() {
     if (overDraw) {
       selectInput("Select Image...", "imageSelected");
     } else if (overCompress) {
-      selectInput("Select Image...", "imageSelected");
+      selectFolder("Select Folder...", "folderSelected");
       page = 2;
     }
   }
@@ -553,6 +554,23 @@ void imageSelected(File selection) {
     // We set up the img here properly
   }
 }
+
+void folderSelected(File selection) {
+  if (selection == null) {
+    println("An image was not selected");
+  }
+  else {
+    if (selection.isDirectory()){
+      for (File f: selection.listFiles()){
+        if (f.isFile()){
+          images.add(f);
+        }
+      }
+    }
+    println(images);
+  }
+}
+
 
 void maxDimensions(int x, int y) {
   int gcd = gcd(x, y);
