@@ -1,6 +1,10 @@
-// other classes
-ColorPlanes colorplanes = new ColorPlanes();
+import java.util.*;
+ArrayList<int[]> indivPixels = new ArrayList<int[]>();
 Edit edit = new Edit();
+Sketch sketch = new Sketch();
+hideImages hide = new hideImages();
+ColorPlanes colorplanes = new ColorPlanes();
+// other classes
 
 int drawRectX, drawRectY;
 int drawRectWidth = 200;
@@ -35,7 +39,7 @@ int modifyRectWidth = 150;
 int modifyRectHeight = 50;
 boolean overModify;
 
-boolean draw_mode; //0 for not drawing, 1 for drawing
+boolean draw_mode=false; //0 for not drawing, 1 for drawing
 
 int rectColor;
 int highlightColor;
@@ -48,7 +52,7 @@ int modeCounter = 0;
 // Image Files
 PImage img;
 File selected;
-
+int first = 0;
 
 void setup() {
   size(1200, 650);
@@ -88,10 +92,11 @@ void setup() {
   page = 0;
   draw_mode = false;
 }
-  
+ 
 void draw() {
+  
   delay(100);
-  background(255);
+  
   stroke(255);
   if (page == 0) {
     update(mouseX, mouseY);
@@ -134,6 +139,8 @@ void draw() {
     if (overRight) { // Arrow functionality
       fill(highlightColor);
       if (mousePressed){
+        draw_mode = false;
+        
         if (modeCounter >= 5 & modeCounter <= modes.length-1){ // this advances the plane and modeCounter
         if (plane > 0) {
           plane--;
@@ -165,17 +172,30 @@ void draw() {
     if (overModify) {
       fill(highlightColor);
       
-      if (mousePressed){
+      if (mousePressed & !draw_mode){
+        draw_mode = true;
         if (!(modeCounter >= 5 & modeCounter <= modes.length-1)) {
           modeCounter = 5;
         }
         
         if (modeCounter == 5) {
           edit.clearRedPlane(img,plane);
+          colorplanes.redBitPlane(img,plane);
         } else if (modeCounter == 6) {
           edit.clearGreenPlane(img,plane);
+          colorplanes.greenBitPlane(img,plane);
         } else {
           edit.clearBluePlane(img,plane);
+          colorplanes.blueBitPlane(img,plane);
+        }
+      } else if (mousePressed) {
+        draw_mode = false;
+        if (modeCounter == 5) {
+          edit.writeRedPlane(img,plane,indivPixels);
+        } else if (modeCounter == 6) {
+          edit.writeGreenPlane(img,plane,indivPixels);
+        } else {
+          edit.writeBluePlane(img,plane,indivPixels);
         }
         
       }
@@ -183,7 +203,7 @@ void draw() {
     else {
       fill(rectColor);
     }
-    if (modeCounter >= 5 & modeCounter <= modes.length-1){
+    if (!draw_mode & modeCounter >= 5 & modeCounter <= modes.length-1){
         if (modeCounter == 5) {
           colorplanes.redBitPlane(img,plane);
         } else if (modeCounter == 6) {
@@ -191,7 +211,7 @@ void draw() {
         } else {
           colorplanes.blueBitPlane(img,plane);
         }
-      } else {
+      } else if (!draw_mode) {
         if (modeCounter == 0){
            image(img,0,0);
         } else if (modeCounter == 1) {
@@ -210,7 +230,13 @@ void draw() {
     text("<", leftRectX, leftRectY);
     text(">", rightRectX, rightRectY);
     text("SAVE", saveRectX, saveRectY);
-    text("DRAW", modifyRectX, modifyRectY); //add conditional here for draw mode
+    if (!draw_mode){
+      text("DRAW", modifyRectX, modifyRectY);
+    } else {
+      text("STOP", modifyRectX, modifyRectY);
+    }
+    
+     //add conditional here for draw mode
     
     
     
@@ -286,7 +312,22 @@ void mousePressed() {
     if (overAnotherImage) {
       selectInput("Select Another Image...", "imageSelected");
     }
+    
+    
   }
+}
+
+void mouseDragged() 
+{
+  if (draw_mode & mouseX < img.width & mouseY < img.height){
+  int[] temp = {mouseX,mouseY};
+  indivPixels.add(temp);
+  stroke(color(0,0,0));
+    //noStroke();
+  fill(0,0,0);
+  ellipse(mouseX,mouseY,10,10);
+  }
+  
 }
 
 void imageSelected(File selection) {
