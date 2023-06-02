@@ -59,7 +59,7 @@ public class ColorPlanes {
     image(copy,0,0);
   }
   
-  void blackAndWhitePlane(PImage img) {
+  void greyPlane(PImage img) {
     PImage copy = img.copy();
     copy.loadPixels();
     
@@ -69,7 +69,11 @@ public class ColorPlanes {
       int g = (int) green(pixel);
       int b = (int) blue(pixel);
       int a = (r+g+b)/3;
-      copy.pixels[i] = color(a,a,a);
+      float bVal = brightness(pixel);
+      int blackOrWhite = bVal > 127 ? color(255) : color(0);
+      
+      
+      copy.pixels[i] = blackOrWhite;
     }
     copy.updatePixels();
     image(copy,0,0);
