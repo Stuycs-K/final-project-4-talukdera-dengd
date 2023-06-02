@@ -1,3 +1,6 @@
+// other classes
+ColorPlanes colorplanes = new ColorPlanes();
+
 int drawRectX, drawRectY;
 int drawRectWidth = 200;
 int drawRectHeight = 70;
@@ -37,8 +40,9 @@ int rectColor;
 int highlightColor;
 
 int page;
-String mode = "original";
+String[] modes = {"original","red","green","blue","gray","redBit","greenBit","blueBit"};
 int plane = 7;
+int modeCounter = 0;
 
 // Image Files
 PImage img;
@@ -85,6 +89,7 @@ void setup() {
 }
   
 void draw() {
+  delay(100);
   background(255);
   stroke(255);
   if (page == 0) {
@@ -125,8 +130,24 @@ void draw() {
       fill(rectColor);
     }
     rect(leftRectX, leftRectY, leftRectSize, leftRectSize);
-    if (overRight) {
+    if (mousePressed & overRight) { // Arrow functionality
       fill(highlightColor);
+      if (modeCounter >= 5 & modeCounter <= modes.length-1){ // this advances the plane and modeCounter
+        if (plane > 0) {
+          plane--;
+        } else {
+          plane = 7;
+          if (modeCounter == modes.length -1) {
+            modeCounter = 0;
+          } else {
+            modeCounter ++;
+          }
+        }    
+      } else {
+        modeCounter ++;
+      }
+      
+      
     }
     else {
       fill(rectColor);
@@ -145,7 +166,27 @@ void draw() {
     else {
       fill(rectColor);
     }
-    image(img,0,0);
+    if (modeCounter >= 5 & modeCounter <= modes.length-1){
+        if (modeCounter == 5) {
+          colorplanes.redBitPlane(img,plane);
+        } else if (modeCounter == 6) {
+          colorplanes.greenBitPlane(img,plane);
+        } else {
+          colorplanes.blueBitPlane(img,plane);
+        }
+      } else {
+        if (modeCounter == 0){
+           image(img,0,0);
+        } else if (modeCounter == 1) {
+           colorplanes.redPlane(img);
+        } else if (modeCounter == 2) {
+          colorplanes.greenPlane(img);
+        } else if (modeCounter == 3) {
+          colorplanes.bluePlane(img);
+        } else if (modeCounter == 4) {
+          colorplanes.greyPlane(img);
+        }
+    }
     rect(modifyRectX, modifyRectY, modifyRectWidth, modifyRectHeight);
     fill(255);
     text("SELECT ANOTHER IMAGE", selectAnotherImageRectX, selectAnotherImageRectY);
