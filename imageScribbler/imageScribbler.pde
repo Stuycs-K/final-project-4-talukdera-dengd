@@ -571,6 +571,10 @@ void folderSelected(File selection) {
   }
 }
 
+boolean isImage(){
+  return true;
+}
+
 
 void maxDimensions(int x, int y) {
   int gcd = gcd(x, y);
