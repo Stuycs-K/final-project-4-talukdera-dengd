@@ -563,7 +563,9 @@ void folderSelected(File selection) {
     if (selection.isDirectory()){
       for (File f: selection.listFiles()){
         if (f.isFile()){
-          images.add(f);
+          if (isImage(f.toString())){
+            images.add(f);
+          }
         }
       }
     }
@@ -571,8 +573,8 @@ void folderSelected(File selection) {
   }
 }
 
-boolean isImage(){
-  return true;
+boolean isImage(String a){
+  return a.endsWith("jpg") || a.endsWith("png") || a.endsWith("jpeg");
 }
 
 
