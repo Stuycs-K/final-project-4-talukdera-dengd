@@ -31,6 +31,11 @@ int modifyRectWidth = 150;
 int modifyRectHeight = 50;
 boolean overModify;
 
+int save2RectX, save2RectY;
+int save2RectWidth = 150;
+int save2RectHeight = 50;
+boolean overSave2;
+
 boolean draw_mode; //0 for not drawing, 1 for drawing
 
 int rectColor;
@@ -43,7 +48,8 @@ int plane = 7;
 // Image Files
 PImage img;
 File selected;
-
+int newHeight;
+int newWidth;
 
 void setup() {
   size(1200, 650);
@@ -80,6 +86,10 @@ void setup() {
   modifyRectY = height - modifyRectHeight / 2;
   overModify = false;
   
+  save2RectX = width - save2RectWidth / 2;
+  save2RectY = height - save2RectHeight / 2;
+  overSave2 = false;
+  
   page = 0;
   draw_mode = false;
 }
@@ -108,8 +118,7 @@ void draw() {
     text("DRAW", drawRectX, drawRectY);
     text("COMPRESS", compressRectX, compressRectY);
   }
-  else if (page == 1 & img != null) {
-    
+  else {
     update1(mouseX, mouseY);
     if (overAnotherImage) {
       fill(highlightColor);
@@ -132,31 +141,46 @@ void draw() {
       fill(rectColor);
     }
     rect(rightRectX, rightRectY, rightRectSize, rightRectSize);
-    if (overSave) {
-      fill(highlightColor);
-    }
-    else {
-      fill(rectColor);
-    }
-    rect(saveRectX, saveRectY, saveRectWidth, saveRectHeight);
-    if (overModify) {
-      fill(highlightColor);
-    }
-    else {
-      fill(rectColor);
-    }
-    image(img,0,0);
-    rect(modifyRectX, modifyRectY, modifyRectWidth, modifyRectHeight);
-    fill(255);
-    text("SELECT ANOTHER IMAGE", selectAnotherImageRectX, selectAnotherImageRectY);
-    text("<", leftRectX, leftRectY);
-    text(">", rightRectX, rightRectY);
-    text("SAVE", saveRectX, saveRectY);
-    text("DRAW", modifyRectX, modifyRectY); //add conditional here for draw mode
-    
-    
-    
-  }
+      if (page == 1) {
+        update1(mouseX, mouseY);
+        if (overSave) {
+          fill(highlightColor);
+        }
+        else {
+          fill(rectColor);
+        }
+        rect(saveRectX, saveRectY, saveRectWidth, saveRectHeight);
+        if (overModify) {
+          fill(highlightColor);
+        }
+        else {
+          fill(rectColor);
+        }
+        rect(modifyRectX, modifyRectY, modifyRectWidth, modifyRectHeight);
+        fill(255);
+        text("SELECT ANOTHER IMAGE", selectAnotherImageRectX, selectAnotherImageRectY);
+        text("<", leftRectX, leftRectY);
+        text(">", rightRectX, rightRectY);
+        text("SAVE", saveRectX, saveRectY);
+        text("DRAW", modifyRectX, modifyRectY); //add conditional here for draw mode
+        image(img, 0, 0);
+      }
+      else if (page == 2) { 
+        update2(mouseX, mouseY);
+        if (overSave2) {
+          fill(highlightColor);
+        }
+        else {
+          fill(rectColor);
+        }
+        rect(save2RectX, save2RectY, save2RectWidth, save2RectHeight);
+        fill(255);
+        text("SELECT ANOTHER IMAGE", selectAnotherImageRectX, selectAnotherImageRectY);
+        text("<", leftRectX, leftRectY);
+        text(">", rightRectX, rightRectY);
+        text("SAVE", save2RectX, save2RectY);
+      }
+   }
 }
 
 void update(int x, int y) {
@@ -218,10 +242,47 @@ void update1(int x, int y) {
     overModify = false;
   }
 }
+
+void update2(int x, int y) {
+  if ( overRect(selectAnotherImageRectX - selectAnotherImageRectWidth / 2, selectAnotherImageRectY - selectAnotherImageRectHeight / 2, selectAnotherImageRectWidth, selectAnotherImageRectHeight) ) {
+    overAnotherImage = true;
+    overLeft = false;
+    overRight = false;
+    overSave2 = false;
+  }
+  else if ( overRect(leftRectX - leftRectSize / 2, leftRectY - leftRectSize / 2, leftRectSize, leftRectSize) ) {
+    overAnotherImage = false;
+    overLeft = true;
+    overRight = false;
+    overSave2 = false;
+  }
+  else if ( overRect(rightRectX - rightRectSize / 2, rightRectY - rightRectSize / 2, rightRectSize, rightRectSize) ) {
+    overAnotherImage = false;
+    overLeft = false;
+    overRight = true;
+    overSave2 = false;
+  }
+  else if ( overRect(save2RectX - save2RectWidth / 2, save2RectY - save2RectHeight / 2, save2RectWidth, save2RectHeight) ) {
+    overAnotherImage = false;
+    overLeft = false;
+    overRight = false;
+    overSave2 = true;
+  }
+  else {
+    overAnotherImage = false;
+    overLeft = false;
+    overRight = false;
+    overSave2 = false;
+  }
+}
+
 void mousePressed() {
   if (page == 0) {
     if (overDraw) {
       selectInput("Select Image...", "imageSelected");
+    }
+    else if (overCompress) {
+      page = 2;
     }
   }
   else if (page == 1) {
@@ -240,6 +301,25 @@ void imageSelected(File selection) {
     page = 1;
     // We set up the img here properly
   }
+}
+
+void maxDimensions(int x, int y) {
+  int gcd = gcd(x, y);
+  x /= gcd;
+  y /= gcd;
+  
+  int maxScale = min(1000 / x, 600 / y);
+  newWidth = x * maxScale;
+  println(newWidth);
+  newHeight = y * maxScale;
+  println(newHeight);
+}
+
+int gcd(int x, int y) {
+  if (x == 0 || y == 0) {
+    return x + y;
+  }
+  return gcd(max(x, y) % min(x, y), min(x, y));
 }
 
 boolean overRect(int x, int y, int width, int height)  {
