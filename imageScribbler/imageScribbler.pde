@@ -95,7 +95,7 @@ void setup() {
  
 void draw() {
   
-  delay(100);
+  delay(150);
   
   stroke(255);
   if (page == 0) {
@@ -139,7 +139,16 @@ void draw() {
     if (overRight) { // Arrow functionality
       fill(highlightColor);
       if (mousePressed){
-        draw_mode = false;
+        if (draw_mode) {
+         draw_mode = false;
+         if (modeCounter == 5) {
+          edit.writeRedPlane(img,plane,indivPixels);
+        } else if (modeCounter == 6) {
+          edit.writeGreenPlane(img,plane,indivPixels);
+        } else {
+          edit.writeBluePlane(img,plane,indivPixels);
+        }
+        }
         
         if (modeCounter >= 5 & modeCounter <= modes.length-1){ // this advances the plane and modeCounter
         if (plane > 0) {
@@ -164,6 +173,9 @@ void draw() {
     rect(rightRectX, rightRectY, rightRectSize, rightRectSize);
     if (overSave) {
       fill(highlightColor);
+      if (mousePressed) {
+        img.save("saved");
+      }
     }
     else {
       fill(rectColor);
