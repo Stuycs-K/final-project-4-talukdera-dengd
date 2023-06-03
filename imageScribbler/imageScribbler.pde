@@ -1,6 +1,8 @@
 import java.util.*;
 ArrayList<int[]> indivPixels = new ArrayList<int[]>();
-ArrayList<File> images = new ArrayList<File>();
+ArrayList<PImage> images = new ArrayList<PImage>();
+PImage compressionBase;
+
 Edit edit = new Edit();
 Sketch sketch = new Sketch();
 hideImages hide = new hideImages();
@@ -546,8 +548,10 @@ void mouseDragged()
 void imageSelected(File selection) {
   if (selection == null) {
     println("An image was not selected");
+    selectInput("Select Image...", "imageSelected");
   }
   else {
+    if (!isImage(selection.toString())){selectInput("Select Image...", "imageSelected");}
     img = loadImage(selection.toString());
     modeCounter = 0;
     plane = 7;
@@ -564,12 +568,74 @@ void folderSelected(File selection) {
       for (File f: selection.listFiles()){
         if (f.isFile()){
           if (isImage(f.toString())){
-            images.add(f);
+            PImage temp;
+            temp = loadImage(f.toString());
+            images.add(temp);
           }
         }
       }
     }
-    println(images);
+    if (images.size() < 2) {
+      images.clear();
+      selectFolder("Select Folder...", "folderSelected");
+    } else {
+      // Start comparing to get the compression base
+      for (int i = 0; i < images.size(); i++) {
+        PImage temp = images.get(i).copy();
+        if (temp.width > 1200 & temp.height>600){
+          temp = cropImage(temp,1200,600);
+          images.set(i,temp);
+        } else if (temp.width > 1200) {
+          temp = cropImage(temp,1200,temp.height);
+          images.set(i,temp);
+        } else if (temp.height > 600) {
+          temp = cropImage(temp, temp.width, 600);
+          images.set(i,temp);
+        }
+      } // Now you have made sure that all images are 1200 x 600 at most
+      ArrayList<PImage> possibleBases = new ArrayList<PImage>();
+      
+      int highScore = 0;
+      int index=0;
+      for (int i = 0; i < images.size(); i++) {
+        PImage temp = images.get(i);
+        int comp = temp.width * temp.height;
+        if (comp > highScore) {
+          highScore = comp;
+          index = i;
+        }
+      }
+      compressionBase = images.get(index);
+      images.remove(index);
+      int w = compressionBase.width;
+      int h = compressionBase.height;
+      
+      for (int i = 0; i < images.size(); i++) {
+        PImage temp = images.get(i).copy();
+        if (temp.width > w & temp.height>h){
+          temp = cropImage(temp,w,h);
+          images.set(i,temp);
+        } else if (temp.width > w) {
+          temp = cropImage(temp,w,temp.height);
+          images.set(i,temp);
+          
+        } else if (temp.height > h) {
+          temp = cropImage(temp, temp.width, h);
+          images.set(i,temp);
+      
+        }
+      }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    }
+   
   }
 }
 
@@ -577,6 +643,16 @@ boolean isImage(String a){
   return a.endsWith("jpg") || a.endsWith("png") || a.endsWith("jpeg");
 }
 
+PImage cropImage(PImage img, int w, int h){
+  PImage cropped = createImage(w,h,ARGB);
+  
+  for (int i = 0; i < w; i++){
+    for (int j = 0; j < h; j++) {
+      cropped.set(i,j, img.get(i,j));
+    } 
+  } 
+  return cropped;
+}
 
 void maxDimensions(int x, int y) {
   int gcd = gcd(x, y);
