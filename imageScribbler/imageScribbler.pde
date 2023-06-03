@@ -111,6 +111,7 @@ void setup() {
 }
  
 void draw() {
+  //println(modes[modeCounter] + " : " + plane);
   delay(150);
   
   stroke(255);
@@ -567,10 +568,12 @@ void folderSelected(File selection) {
     if (selection.isDirectory()){
       for (File f: selection.listFiles()){
         if (f.isFile()){
-          if (isImage(f.toString())){
+          if (isImage(f.toString()) & images.size() < 22){
             PImage temp;
             temp = loadImage(f.toString());
-            images.add(temp);
+            if (temp != null) {
+              images.add(temp);
+            }
           }
         }
       }
@@ -605,35 +608,44 @@ void folderSelected(File selection) {
           index = i;
         }
       }
-      compressionBase = images.get(index);
+      compressionBase = images.get(index).copy();
       images.remove(index);
       int w = compressionBase.width;
       int h = compressionBase.height;
       
       for (int i = 0; i < images.size(); i++) {
         PImage temp = images.get(i).copy();
+        
         if (temp.width > w & temp.height>h){
           temp = cropImage(temp,w,h);
           images.set(i,temp);
         } else if (temp.width > w) {
           temp = cropImage(temp,w,temp.height);
           images.set(i,temp);
-          
         } else if (temp.height > h) {
           temp = cropImage(temp, temp.width, h);
           images.set(i,temp);
-      
         }
+        temp.resize(compressionBase.width, compressionBase.height);
+        println("image: " + temp.width + " : " + temp.height);
+        
+        //println("i :" + i);
+        if (i <= 7){
+          println(images.get(i));
+          int p = (i-7)*-1;
+          //println("P : " + p);
+          
+          hide.hideImageInRedBitPlane(compressionBase,p,temp);
+        } else if (i <= 14){
+          int p = (i-15)*-1;
+          hide.hideImageInGreenBitPlane(compressionBase,p,temp);
+        } else if (i <= 21){
+          int p = (i - 22) * -1;
+          hide.hideImageInBlueBitPlane(compressionBase,p,temp);
+        }
+        
       }
-      
-      
-      
-      
-      
-      
-      
-      
-      
+      img = compressionBase;
     }
    
   }
