@@ -111,7 +111,7 @@ void setup() {
 }
  
 void draw() {
-  //println(modes[modeCounter] + " : " + plane);
+  println(modes[modeCounter] + " : " + plane);
   delay(150);
   
   stroke(255);
@@ -568,7 +568,7 @@ void folderSelected(File selection) {
     if (selection.isDirectory()){
       for (File f: selection.listFiles()){
         if (f.isFile()){
-          if (isImage(f.toString()) & images.size() < 22){
+          if (isImage(f.toString()) & images.size() < 25){
             PImage temp;
             temp = loadImage(f.toString());
             if (temp != null) {
@@ -583,63 +583,66 @@ void folderSelected(File selection) {
       selectFolder("Select Folder...", "folderSelected");
     } else {
       // Start comparing to get the compression base
-      for (int i = 0; i < images.size(); i++) {
-        PImage temp = images.get(i).copy();
-        if (temp.width > 1200 & temp.height>600){
-          temp = cropImage(temp,1200,600);
-          images.set(i,temp);
-        } else if (temp.width > 1200) {
-          temp = cropImage(temp,1200,temp.height);
-          images.set(i,temp);
-        } else if (temp.height > 600) {
-          temp = cropImage(temp, temp.width, 600);
-          images.set(i,temp);
-        }
-      } // Now you have made sure that all images are 1200 x 600 at most
-      ArrayList<PImage> possibleBases = new ArrayList<PImage>();
+      //for (int i = 0; i < images.size(); i++) {
+      //  PImage temp = images.get(i).copy();
+      //  temp.resize(1200,600);
+      //  images.set(i,temp);
+      //  //if (temp.width > 1200 & temp.height>600){
+      //  //  temp = cropImage(temp,1200,600);
+      //  //  images.set(i,temp);
+      //  //} else if (temp.width > 1200) {
+      //  //  temp = cropImage(temp,1200,temp.height);
+      //  //  images.set(i,temp);
+      //  //} else if (temp.height > 600) {
+      //  //  temp = cropImage(temp, temp.width, 600);
+      //  //  images.set(i,temp);
+      //  //}
+      //} // Now you have made sure that all images are 1200 x 600 at most
+      //ArrayList<PImage> possibleBases = new ArrayList<PImage>();
       
-      int highScore = 0;
-      int index=0;
-      for (int i = 0; i < images.size(); i++) {
-        PImage temp = images.get(i);
-        int comp = temp.width * temp.height;
-        if (comp > highScore) {
-          highScore = comp;
-          index = i;
-        }
-      }
-      compressionBase = images.get(index).copy();
-      images.remove(index);
-      int w = compressionBase.width;
-      int h = compressionBase.height;
+      //int highScore = 0;
+      //int index=0;
+      //for (int i = 0; i < images.size(); i++) {
+      //  PImage temp = images.get(i);
+      //  int comp = temp.width * temp.height;
+      //  if (comp > highScore) {
+      //    highScore = comp;
+      //    index = i;
+      //  }
+      //}
+      compressionBase = images.get(0).copy();
+      compressionBase.resize(1200,600);
+      //images.remove(0);
+      //int w = compressionBase.width;
+      //int h = compressionBase.height;
       
       for (int i = 0; i < images.size(); i++) {
         PImage temp = images.get(i).copy();
         
-        if (temp.width > w & temp.height>h){
-          temp = cropImage(temp,w,h);
-          images.set(i,temp);
-        } else if (temp.width > w) {
-          temp = cropImage(temp,w,temp.height);
-          images.set(i,temp);
-        } else if (temp.height > h) {
-          temp = cropImage(temp, temp.width, h);
-          images.set(i,temp);
-        }
+        //if (temp.width > w & temp.height>h){
+        //  temp = cropImage(temp,w,h);
+        //  images.set(i,temp);
+        //} else if (temp.width > w) {
+        //  temp = cropImage(temp,w,temp.height);
+        //  images.set(i,temp);
+        //} else if (temp.height > h) {
+        //  temp = cropImage(temp, temp.width, h);
+        //  images.set(i,temp);
+        //}
         temp.resize(compressionBase.width, compressionBase.height);
-        println("image: " + temp.width + " : " + temp.height);
+        //println("image: " + temp.width + " : " + temp.height);
         
         //println("i :" + i);
         if (i <= 7){
-          println(images.get(i));
+          //println(images.get(i));
           int p = (i-7)*-1;
           //println("P : " + p);
           
           hide.hideImageInRedBitPlane(compressionBase,p,temp);
-        } else if (i <= 14){
+        } else if (i <= 15){
           int p = (i-15)*-1;
           hide.hideImageInGreenBitPlane(compressionBase,p,temp);
-        } else if (i <= 21){
+        } else if (i <= 22){
           int p = (i - 22) * -1;
           hide.hideImageInBlueBitPlane(compressionBase,p,temp);
         }
