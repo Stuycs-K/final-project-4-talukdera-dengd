@@ -111,8 +111,7 @@ void setup() {
 }
  
 void draw() {
-  println(modes[modeCounter] + " : " + plane);
-  delay(150);
+  delay(100);
   
   stroke(255);
   if (page == 0) {
@@ -612,7 +611,7 @@ void folderSelected(File selection) {
       //}
       compressionBase = images.get(0).copy();
       compressionBase.resize(1200,600);
-      //images.remove(0);
+      images.remove(0);
       //int w = compressionBase.width;
       //int h = compressionBase.height;
       
