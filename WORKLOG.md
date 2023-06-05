@@ -54,12 +54,26 @@ Merging code
 - Finished draw view button so that when you see the pixels you drew on, they appear as large dots just like you drew them
 
 
-## GROUP MEMBER 2
+## David Deng
 
-### date x
+### May 25, 2023
 
-info
+- Indented code for readability and debugging purposes
 
-### date y
+### June 1, 2023
 
-info
+- Add basic GUI model for all three pages with basic interactivity.
+- Implement basic connection to program on user clicks.
+
+### June 4, 2023
+
+- Cleaned codebase.
+- Remove requirement to choose image to prevent need to restart program if they click on one option.
+- Connect home page to draw page.
+- Fix GUI bugs where multiple pages were being displayed at a time.
+- Added information on both draw and compress page where the current bit plane would be shown for more information.
+- Fixed bug where compress page buttons were conflicting.
+- Added draw view button to allow user to see their drawing after they finished.
+
+### June 5, 2023
+- Added plane information to presentation
