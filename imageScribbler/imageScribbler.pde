@@ -477,6 +477,9 @@ void draw() {
     text("<", leftRectX, leftRectY);
     text(">", rightRectX, rightRectY);
     text("SAVE", save2RectX, save2RectY);
+    rect(infoRectX, infoRectY, infoRectWidth, infoRectHeight);
+    fill(0);
+    text((modes[modeCounter] + " " + plane).toUpperCase(), infoRectX, infoRectY);
   }
 }
 
