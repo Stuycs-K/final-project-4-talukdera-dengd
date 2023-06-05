@@ -6,6 +6,8 @@ Color planes are a way to represent an image as only one of the primary colors.
 
 This is done by just zeroing out the other colors.
 
+Thus, only one color remains and its resulting intensity is shown across the entire image.
+
 ## Bit Planes
 
 Bit planes are a way to represent the binary information of an image by dividing it into separate planes (or layers) based on the value of each individual bit.
