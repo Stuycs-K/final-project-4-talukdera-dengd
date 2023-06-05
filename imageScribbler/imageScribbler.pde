@@ -116,6 +116,7 @@ void draw() {
   stroke(255);
   if (page == 0) {
     update(mouseX, mouseY);
+    
     if (overDraw) {
       fill(highlightColor);
     }
@@ -131,12 +132,15 @@ void draw() {
       fill(rectColor);
     }
     rect(compressRectX, compressRectY, compressRectWidth, compressRectHeight);
+    
     fill(255);
     text("DRAW", drawRectX, drawRectY);
     text("COMPRESS", compressRectX, compressRectY);
-  } else if (page == 1 & img != null) {
+  } 
+  else if (page == 1) {
     
     update1(mouseX, mouseY);
+    
     if (overAnotherImage) {
       fill(highlightColor);
     }
@@ -144,81 +148,91 @@ void draw() {
       fill(rectColor);
     }
     rect(selectAnotherImageRectX, selectAnotherImageRectY, selectAnotherImageRectWidth, selectAnotherImageRectHeight);
+    
     if (overLeft) {
       fill(highlightColor);
       fill(highlightColor);
       if (mousePressed){
         if (draw_mode) {
-         draw_mode = false;
-        if (modeCounter == 5) {
-          edit.writeRedPlane(img,plane,indivPixels);
-        } else if (modeCounter == 6) {
-          edit.writeGreenPlane(img,plane,indivPixels);
-        } else {
-          edit.writeBluePlane(img,plane,indivPixels);
-        }
-        
-        indivPixels.clear();
+          draw_mode = false;
+          if (modeCounter == 5) {
+            edit.writeRedPlane(img,plane,indivPixels);
+          } else if (modeCounter == 6) {
+            edit.writeGreenPlane(img,plane,indivPixels);
+          } else {
+            edit.writeBluePlane(img,plane,indivPixels);
+          }
+          indivPixels.clear();
         }
         
         if (modeCounter >= 5 & modeCounter <= modes.length-1){ // this advances the plane and modeCounter
-        if (plane < 7) {
-          plane++;
-        } else {
-          plane = 0;
-          if (modeCounter == 0) {
-            modeCounter = modes.length-1;
-          } else {
-            modeCounter --;
-          }
-        }    
-      } else if (modeCounter == 0) {
-        modeCounter = modes.length -1;
-      } else {
-        modeCounter --;
-      }
+          if (plane < 7) {
+            plane++;
+          } 
+          else {
+            plane = 0;
+            if (modeCounter == 0) {
+              modeCounter = modes.length-1;
+            } 
+            else {
+              modeCounter --;
+            }
+          }    
+        } 
+        else if (modeCounter == 0) {
+          modeCounter = modes.length -1;
+        } 
+        else {
+          modeCounter --;
+        }
       }
     }
     else {
       fill(rectColor);
     }
     rect(leftRectX, leftRectY, leftRectSize, leftRectSize);
+    
     if (overRight) { // Arrow functionality
       fill(highlightColor);
       if (mousePressed){
         if (draw_mode) {
-         draw_mode = false;
-         if (modeCounter == 5) {
-          edit.writeRedPlane(img,plane,indivPixels);
-        } else if (modeCounter == 6) {
-          edit.writeGreenPlane(img,plane,indivPixels);
-        } else {
-          edit.writeBluePlane(img,plane,indivPixels);
-        }
-        indivPixels.clear();
+          draw_mode = false;
+          if (modeCounter == 5) {
+            edit.writeRedPlane(img,plane,indivPixels);
+          } 
+          else if (modeCounter == 6) {
+            edit.writeGreenPlane(img,plane,indivPixels);
+          }
+          else {
+            edit.writeBluePlane(img,plane,indivPixels);
+          }
+          indivPixels.clear();
         }
         
         if (modeCounter >= 5 & modeCounter <= modes.length-1){ // this advances the plane and modeCounter
-        if (plane > 0) {
-          plane--;
-        } else {
-          plane = 7;
-          if (modeCounter == modes.length -1) {
-            modeCounter = 0;
-          } else {
-            modeCounter ++;
-          }
-        }    
-      } else {
+          if (plane > 0) {
+            plane--;
+          } 
+          else {
+            plane = 7;
+            if (modeCounter == modes.length -1) {
+              modeCounter = 0;
+            } 
+            else {
+              modeCounter ++;
+            }
+          }    
+        } 
+        else {
         modeCounter ++;
+        }
       }
-      }
-      
     }
     else {
       fill(rectColor);
     }
     rect(rightRectX, rightRectY, rightRectSize, rightRectSize);
+    
     if (overSave) {
       fill(highlightColor);
       if (mousePressed) {
@@ -229,6 +243,7 @@ void draw() {
       fill(rectColor);
     }
     rect(saveRectX, saveRectY, saveRectWidth, saveRectHeight);
+    
     if (overModify) {
       fill(highlightColor);
       
@@ -241,20 +256,25 @@ void draw() {
         if (modeCounter == 5) {
           edit.clearRedPlane(img,plane);
           colorplanes.redBitPlane(img,plane);
-        } else if (modeCounter == 6) {
+        } 
+        else if (modeCounter == 6) {
           edit.clearGreenPlane(img,plane);
           colorplanes.greenBitPlane(img,plane);
-        } else {
+        } 
+        else {
           edit.clearBluePlane(img,plane);
           colorplanes.blueBitPlane(img,plane);
         }
-      } else if (mousePressed) {
+      } 
+      else if (mousePressed) {
         draw_mode = false;
         if (modeCounter == 5) {
           edit.writeRedPlane(img,plane,indivPixels);
-        } else if (modeCounter == 6) {
+        } 
+        else if (modeCounter == 6) {
           edit.writeGreenPlane(img,plane,indivPixels);
-        } else {
+        } 
+        else {
           edit.writeBluePlane(img,plane,indivPixels);
         }
         indivPixels.clear();
@@ -264,25 +284,30 @@ void draw() {
       fill(rectColor);
     }
     if (!draw_mode & modeCounter >= 5 & modeCounter <= modes.length-1){
-        if (modeCounter == 5) {
-          colorplanes.redBitPlane(img,plane);
-        } else if (modeCounter == 6) {
-          colorplanes.greenBitPlane(img,plane);
-        } else {
-          colorplanes.blueBitPlane(img,plane);
-        }
-      } else if (!draw_mode) {
-        if (modeCounter == 0){
-           image(img,0,0);
-        } else if (modeCounter == 1) {
-           colorplanes.redPlane(img);
-        } else if (modeCounter == 2) {
-          colorplanes.greenPlane(img);
-        } else if (modeCounter == 3) {
-          colorplanes.bluePlane(img);
-        } else if (modeCounter == 4) {
-          colorplanes.greyPlane(img);
-        }
+      if (modeCounter == 5) {
+        colorplanes.redBitPlane(img,plane);
+      } else if (modeCounter == 6) {
+        colorplanes.greenBitPlane(img,plane);
+      } else {
+        colorplanes.blueBitPlane(img,plane);
+      }
+     } 
+     else if (!draw_mode) {
+       if (modeCounter == 0){
+          image(img,0,0);
+       } 
+       else if (modeCounter == 1) {
+         colorplanes.redPlane(img);
+       }
+       else if (modeCounter == 2) {
+         colorplanes.greenPlane(img);
+      } 
+      else if (modeCounter == 3) {
+        colorplanes.bluePlane(img);
+      } 
+      else if (modeCounter == 4) {
+        colorplanes.greyPlane(img);
+      }
     }
     rect(modifyRectX, modifyRectY, modifyRectWidth, modifyRectHeight);
     fill(255);
@@ -298,8 +323,7 @@ void draw() {
     
      //add conditional here for draw mode
   
-  } else if (img != null & page == 2) { 
-        
+  } else if (page == 2) {
         update2(mouseX, mouseY);
         if (overSave2) {
       fill(highlightColor);
@@ -329,96 +353,105 @@ void draw() {
         }
         
         if (modeCounter >= 5 & modeCounter <= modes.length-1){ // this advances the plane and modeCounter
-        if (plane < 7) {
-          plane++;
-        } else {
-          plane = 0;
-          if (modeCounter == 0) {
-            modeCounter = modes.length-1;
-          } else {
-            modeCounter --;
-          }
-        }    
-      } else if (modeCounter == 0) {
-        modeCounter = modes.length -1;
-      } else {
-        modeCounter --;
-      }
+          if (plane < 7) {
+            plane++;
+          } 
+          else {
+            plane = 0;
+            if (modeCounter == 0) {
+              modeCounter = modes.length-1;
+            } else {
+              modeCounter --;
+            }
+          }    
+        } 
+        else if (modeCounter == 0) {
+          modeCounter = modes.length -1;
+        } 
+        else {
+          modeCounter --;
+        }
       }
     }
     else {
       fill(rectColor);
     }
     rect(leftRectX, leftRectY, leftRectSize, leftRectSize);
+    
     if (overRight) { // Arrow functionality
       fill(highlightColor);
       if (mousePressed){
         if (draw_mode) {
-         draw_mode = false;
-         if (modeCounter == 5) {
-          edit.writeRedPlane(img,plane,indivPixels);
-        } else if (modeCounter == 6) {
-          edit.writeGreenPlane(img,plane,indivPixels);
-        } else {
-          edit.writeBluePlane(img,plane,indivPixels);
-        }
-        indivPixels.clear();
+          draw_mode = false;
+          if (modeCounter == 5) {
+            edit.writeRedPlane(img,plane,indivPixels);
+          } 
+          else if (modeCounter == 6) {
+            edit.writeGreenPlane(img,plane,indivPixels);
+          } 
+          else {
+            edit.writeBluePlane(img,plane,indivPixels);
+          }
+          indivPixels.clear();
         }
         
-        if (modeCounter >= 5 & modeCounter <= modes.length-1){ // this advances the plane and modeCounter
-        if (plane > 0) {
-          plane--;
-        } else {
-          plane = 7;
-          if (modeCounter == modes.length -1) {
-            modeCounter = 0;
-          } else {
-            modeCounter ++;
-          }
-        }    
-      } else {
-        modeCounter ++;
+        if (modeCounter >= 5 & modeCounter <= modes.length-1) { // this advances the plane and modeCounter
+          if (plane > 0) {
+            plane--;
+          } 
+          else {
+            plane = 7;
+            if (modeCounter == modes.length -1) {
+              modeCounter = 0;
+            } 
+            else {
+              modeCounter ++;
+            }
+          }    
+        } 
+        else {
+          modeCounter ++;
+        }
       }
-      }
-      
     }
     else {
       fill(rectColor);
     }
     
     if (!draw_mode & modeCounter >= 5 & modeCounter <= modes.length-1){
-        if (modeCounter == 5) {
-          colorplanes.redBitPlane(img,plane);
-        } else if (modeCounter == 6) {
-          colorplanes.greenBitPlane(img,plane);
-        } else {
-          colorplanes.blueBitPlane(img,plane);
-        }
-      } else if (!draw_mode) {
-        if (modeCounter == 0){
-           image(img,0,0);
-        } else if (modeCounter == 1) {
-           colorplanes.redPlane(img);
-        } else if (modeCounter == 2) {
-          colorplanes.greenPlane(img);
-        } else if (modeCounter == 3) {
-          colorplanes.bluePlane(img);
-        } else if (modeCounter == 4) {
-          colorplanes.greyPlane(img);
-        }
+      if (modeCounter == 5) {
+        colorplanes.redBitPlane(img,plane);
+      } 
+      else if (modeCounter == 6) {
+        colorplanes.greenBitPlane(img,plane);
+      } 
+      else {
+        colorplanes.blueBitPlane(img,plane);
+      }
+     } 
+     else if (!draw_mode) {
+      if (modeCounter == 0){
+         image(img,0,0);
+      } else if (modeCounter == 1) {
+         colorplanes.redPlane(img);
+      } else if (modeCounter == 2) {
+        colorplanes.greenPlane(img);
+      } else if (modeCounter == 3) {
+        colorplanes.bluePlane(img);
+      } else if (modeCounter == 4) {
+        colorplanes.greyPlane(img);
+      }
     }
     
     rect(rightRectX, rightRectY, rightRectSize, rightRectSize);
     
-        rect(save2RectX, save2RectY, save2RectWidth, save2RectHeight);
-        fill(255);
-        text("SELECT ANOTHER IMAGE", selectAnotherImageRectX, selectAnotherImageRectY);
-        text("<", leftRectX, leftRectY);
-        text(">", rightRectX, rightRectY);
-        text("SAVE", save2RectX, save2RectY);
-   }
-  
-  
+    rect(save2RectX, save2RectY, save2RectWidth, save2RectHeight);
+    fill(255);
+    text("SELECT ANOTHER IMAGE", selectAnotherImageRectX, selectAnotherImageRectY);
+    text("<", leftRectX, leftRectY);
+    text(">", rightRectX, rightRectY);
+    text("SAVE", save2RectX, save2RectY);
+  }
 }
 
 void update(int x, int y) {
