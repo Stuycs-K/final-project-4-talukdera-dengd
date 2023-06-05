@@ -9,6 +9,7 @@ hideImages hide = new hideImages();
 ColorPlanes colorplanes = new ColorPlanes();
 //hide.method
 // other classes
+
 int save2RectX, save2RectY;
 int save2RectWidth = 150;
 int save2RectHeight = 50;
@@ -49,8 +50,6 @@ int modifyRectWidth = 150;
 int modifyRectHeight = 50;
 boolean overModify;
 
-boolean draw_mode=false; //0 for not drawing, 1 for drawing
-
 int rectColor;
 int highlightColor;
 
@@ -58,6 +57,7 @@ int page;
 String[] modes = {"original","red","green","blue","gray","redBit","greenBit","blueBit"};
 int plane = 7;
 int modeCounter = 0;
+boolean draw_mode;
 
 // Image Files
 PImage img;
@@ -138,7 +138,6 @@ void draw() {
     text("COMPRESS", compressRectX, compressRectY);
   } 
   else if (page == 1) {
-    
     update1(mouseX, mouseY);
     
     if (overAnotherImage) {
@@ -581,13 +580,14 @@ void mouseDragged()
 void imageSelected(File selection) {
   if (selection == null) {
     println("An image was not selected");
-    selectInput("Select Image...", "imageSelected");
   }
   else {
-    if (!isImage(selection.toString())){selectInput("Select Image...", "imageSelected");}
-    img = loadImage(selection.toString());
-    modeCounter = 0;
-    plane = 7;
+    if (!isImage(selection.toString())){selectInput("Select Image...", "imageSelected");
+      img = loadImage(selection.toString());
+      modeCounter = 0;
+      plane = 7;
+      page = 1;
+    }
     // We set up the img here properly
   }
 }
