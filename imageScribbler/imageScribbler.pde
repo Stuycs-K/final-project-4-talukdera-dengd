@@ -32,6 +32,10 @@ int selectAnotherImageRectWidth = 250;
 int selectAnotherImageRectHeight = 50;
 boolean overAnotherImage;
 
+int infoRectX, infoRectY;
+int infoRectWidth;
+int infoRectHeight = 50;
+
 int leftRectX, leftRectY;
 int leftRectSize = 50;
 boolean overLeft;
@@ -86,6 +90,10 @@ void setup() {
   leftRectX = width / 2 - leftRectSize / 2;
   leftRectY = height - leftRectSize / 2;
   overLeft = false;
+  
+  infoRectWidth = leftRectX - (leftRectSize / 2) - (selectAnotherImageRectX + selectAnotherImageRectWidth / 2);;
+  infoRectX = leftRectX - leftRectSize / 2 - infoRectWidth / 2;
+  infoRectY = height - infoRectHeight / 2;
   
   rightRectX = width / 2 + rightRectSize / 2;
   rightRectY = height - rightRectSize / 2;
@@ -315,12 +323,15 @@ void draw() {
     text("<", leftRectX, leftRectY);
     text(">", rightRectX, rightRectY);
     text("SAVE", saveRectX, saveRectY);
+    rect(infoRectX, infoRectY, infoRectWidth, infoRectHeight);
     if (!draw_mode){
       text("DRAW", modifyRectX, modifyRectY);
     } else {
       text("STOP", modifyRectX, modifyRectY);
     }
+    fill(0);
     
+    text((modes[modeCounter] + " " + plane).toUpperCase(), infoRectX, infoRectY);
      //add conditional here for draw mode
   
   } else if (page == 2) {
