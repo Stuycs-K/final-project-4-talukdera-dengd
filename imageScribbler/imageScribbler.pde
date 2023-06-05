@@ -108,6 +108,7 @@ void setup() {
   
   page = 0;
   draw_mode = false;
+  background(255);
 }
  
 void draw() {
@@ -136,7 +137,7 @@ void draw() {
     fill(255);
     text("DRAW", drawRectX, drawRectY);
     text("COMPRESS", compressRectX, compressRectY);
-  } 
+  }
   else if (page == 1) {
     update1(mouseX, mouseY);
     
@@ -550,9 +551,9 @@ void mousePressed() {
   if (page == 0) {
     if (overDraw) {
       selectInput("Select Image...", "imageSelected");
-    } else if (overCompress) {
+    } 
+    else if (overCompress) {
       selectFolder("Select Folder...", "folderSelected");
-      page = 2;
     }
   }
   else if (page == 1) {
@@ -585,6 +586,7 @@ void imageSelected(File selection) {
     img = loadImage(selection.toString());
     modeCounter = 0;
     plane = 7;
+    background(255);
     page = 1;
     // We set up the img here properly
   }
@@ -680,7 +682,7 @@ void folderSelected(File selection) {
       }
       img = compressionBase;
     }
-   
+   page = 2;
   }
 }
 
