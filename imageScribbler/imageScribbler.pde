@@ -49,6 +49,11 @@ int saveRectWidth = 150;
 int saveRectHeight = 50;
 boolean overSave;
 
+int showModifyRectX, showModifyRectY;
+int showModifyRectWidth = 150;
+int showModifyRectHeight = 50;
+boolean overShowModify;
+
 int modifyRectX, modifyRectY;
 int modifyRectWidth = 150;
 int modifyRectHeight = 50;
@@ -99,20 +104,21 @@ void setup() {
   rightRectY = height - rightRectSize / 2;
   overRight = false;
   
-  saveRectX = width - modifyRectWidth - saveRectWidth / 2; //replace with draw/stop button width later
-  saveRectY = height - saveRectHeight / 2;
-  overSave = false;
-  
   modifyRectX = width - modifyRectWidth / 2;
   modifyRectY = height - modifyRectHeight / 2;
   overModify = false;
   
+  showModifyRectX = width - modifyRectWidth - showModifyRectWidth / 2;
+  showModifyRectY = height - showModifyRectHeight / 2;
+  overShowModify = false;
+  
+  saveRectX = showModifyRectX - showModifyRectWidth / 2 - saveRectWidth / 2;
+  saveRectY = height - saveRectHeight / 2;
+  overSave = false;
   
   save2RectX = width - save2RectWidth / 2;
   save2RectY = height - save2RectHeight / 2;
   overSave2 = false;
-  
-  
   
   page = 0;
   draw_mode = false;
@@ -252,6 +258,14 @@ void draw() {
     }
     rect(saveRectX, saveRectY, saveRectWidth, saveRectHeight);
     
+    if (overShowModify) {
+      fill(highlightColor);
+    }
+    else {
+      fill(rectColor);
+    }
+    rect(showModifyRectX, showModifyRectY, showModifyRectWidth, showModifyRectHeight);
+    
     if (overModify) {
       fill(highlightColor);
       
@@ -323,6 +337,7 @@ void draw() {
     text("<", leftRectX, leftRectY);
     text(">", rightRectX, rightRectY);
     text("SAVE", saveRectX, saveRectY);
+    text("DRAW VIEW", showModifyRectX, showModifyRectY);
     rect(infoRectX, infoRectY, infoRectWidth, infoRectHeight);
     if (!draw_mode){
       text("DRAW", modifyRectX, modifyRectY);
@@ -486,6 +501,7 @@ void update1(int x, int y) {
     overLeft = false;
     overRight = false;
     overSave = false;
+    overShowModify = false;
     overModify = false;
   }
   else if ( overRect(leftRectX - leftRectSize / 2, leftRectY - leftRectSize / 2, leftRectSize, leftRectSize) ) {
@@ -493,6 +509,7 @@ void update1(int x, int y) {
     overLeft = true;
     overRight = false;
     overSave = false;
+    overShowModify = false;
     overModify = false;
   }
   else if ( overRect(rightRectX - rightRectSize / 2, rightRectY - rightRectSize / 2, rightRectSize, rightRectSize) ) {
@@ -500,6 +517,7 @@ void update1(int x, int y) {
     overLeft = false;
     overRight = true;
     overSave = false;
+    overShowModify = false;
     overModify = false;
   }
   else if ( overRect(saveRectX - saveRectWidth / 2, saveRectY - saveRectHeight / 2, saveRectWidth, saveRectHeight) ) {
@@ -507,6 +525,15 @@ void update1(int x, int y) {
     overLeft = false;
     overRight = false;
     overSave = true;
+    overShowModify = false;
+    overModify = false;
+  }
+  else if ( overRect(showModifyRectX - showModifyRectWidth / 2, showModifyRectY - showModifyRectHeight / 2, showModifyRectWidth, showModifyRectHeight) ) {
+    overAnotherImage = false;
+    overLeft = false;
+    overRight = false;
+    overSave = false;
+    overShowModify = true;
     overModify = false;
   }
   else if ( overRect(modifyRectX - modifyRectWidth / 2, modifyRectY - modifyRectHeight / 2, modifyRectWidth, modifyRectHeight) ) {
@@ -514,6 +541,7 @@ void update1(int x, int y) {
     overLeft = false;
     overRight = false;
     overSave = false;
+    overShowModify = false;
     overModify = true;
   }
   else {
@@ -521,6 +549,7 @@ void update1(int x, int y) {
     overLeft = false;
     overRight = false;
     overSave = false;
+    overShowModify = false;
     overModify = false;
   }
 }
