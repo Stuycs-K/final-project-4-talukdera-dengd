@@ -27,6 +27,8 @@ For example, given a pixel with brightness 150 (binary: 10010110), the following
 
 This explains why the bit planes get more distorted as we traverse down. There is a loss of information as the more significant bits are zeroed out.
 
+![](https://editor.analyticsvidhya.com/uploads/61607page%2015.gif)
+
 Now, you might be wondering isn't this kind of useless since most images aren't greyscale but a bunch of different colors. Hence, each pixel isn't only 8 bits? 
 
 Well, there exists quite a lot of algorithms out there for converting an image into greyscale. 
