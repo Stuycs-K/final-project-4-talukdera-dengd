@@ -3,6 +3,7 @@ ArrayList<int[]> indivPixels = new ArrayList<int[]>();
 ArrayList<PImage> images = new ArrayList<PImage>();
 PImage compressionBase;
 
+
 Edit edit = new Edit();
 Sketch sketch = new Sketch();
 hideImages hide = new hideImages();
@@ -73,6 +74,8 @@ boolean draw_mode;
 PImage img;
 File selected;
 int first = 0;
+
+boolean ellipses = false;
 
 void setup() {
   size(1200, 650);
@@ -165,7 +168,7 @@ void draw() {
     rect(selectAnotherImageRectX, selectAnotherImageRectY, selectAnotherImageRectWidth, selectAnotherImageRectHeight);
     
     if (overLeft) {
-      fill(highlightColor);
+      ellipses = false;
       fill(highlightColor);
       if (mousePressed){
         if (draw_mode) {
@@ -208,6 +211,7 @@ void draw() {
     rect(leftRectX, leftRectY, leftRectSize, leftRectSize);
     
     if (overRight) { // Arrow functionality
+    ellipses = false;
       fill(highlightColor);
       if (mousePressed){
         if (draw_mode) {
@@ -261,6 +265,9 @@ void draw() {
     
     if (overShowModify) {
       fill(highlightColor);
+      if (mousePressed) {
+        ellipses = !ellipses;
+      }
     }
     else {
       fill(rectColor);
@@ -272,6 +279,7 @@ void draw() {
       
       if (mousePressed & !draw_mode){
         draw_mode = true;
+        
         if (!(modeCounter >= 5 & modeCounter <= modes.length-1)) {
           modeCounter = 5;
         }
@@ -288,6 +296,8 @@ void draw() {
           edit.clearBluePlane(img,plane);
           colorplanes.blueBitPlane(img,plane);
         }
+        
+        
       } 
       else if (mousePressed) {
         draw_mode = false;
@@ -308,11 +318,23 @@ void draw() {
     }
     if (!draw_mode & modeCounter >= 5 & modeCounter <= modes.length-1){
       if (modeCounter == 5) {
-        colorplanes.redBitPlane(img,plane);
+        if (!ellipses) {
+          colorplanes.redBitPlane(img,plane);
+        } else {
+          sketch.redBitPlane(img,plane);
+        }
       } else if (modeCounter == 6) {
-        colorplanes.greenBitPlane(img,plane);
+        if (!ellipses) {
+          colorplanes.greenBitPlane(img,plane);
+        } else {
+          sketch.greenBitPlane(img,plane);
+        }
       } else {
-        colorplanes.blueBitPlane(img,plane);
+        if (!ellipses) {
+          colorplanes.blueBitPlane(img,plane);
+        } else {
+          sketch.blueBitPlane(img,plane);
+        }
       }
      } 
      else if (!draw_mode) {
@@ -363,7 +385,8 @@ void draw() {
     }
     
     if (overLeft) {
-      fill(highlightColor);
+      ellipses = false;
+      
       fill(highlightColor);
       if (mousePressed){
         if (draw_mode) {
@@ -407,6 +430,7 @@ void draw() {
     
     if (overRight) { // Arrow functionality
       fill(highlightColor);
+      ellipses = false;
       if (mousePressed){
         if (draw_mode) {
           draw_mode = false;
@@ -447,13 +471,23 @@ void draw() {
     
     if (!draw_mode & modeCounter >= 5 & modeCounter <= modes.length-1){
       if (modeCounter == 5) {
-        colorplanes.redBitPlane(img,plane);
-      } 
-      else if (modeCounter == 6) {
-        colorplanes.greenBitPlane(img,plane);
-      } 
-      else {
-        colorplanes.blueBitPlane(img,plane);
+        if (!ellipses) {
+          colorplanes.redBitPlane(img,plane);
+        } else {
+          sketch.redBitPlane(img,plane);
+        }
+      } else if (modeCounter == 6) {
+        if (!ellipses) {
+          colorplanes.greenBitPlane(img,plane);
+        } else {
+          sketch.greenBitPlane(img,plane);
+        }
+      } else {
+        if (!ellipses) {
+          colorplanes.blueBitPlane(img,plane);
+        } else {
+          sketch.blueBitPlane(img,plane);
+        }
       }
      } 
      else if (!draw_mode) {
