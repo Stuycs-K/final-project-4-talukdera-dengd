@@ -564,17 +564,14 @@ void mousePressed() {
 
 void mouseDragged() 
 {
-  if (page != 1) {
-  
-  } else if (page==1 & draw_mode & mouseX < img.width & mouseY < img.height){
-  int[] temp = {mouseX,mouseY};
-  indivPixels.add(temp);
-  stroke(color(0,0,0));
-    //noStroke();
-  fill(0,0,0);
-  ellipse(mouseX,mouseY,10,10);
+  if (page==1 & draw_mode & mouseX < img.width & mouseY < img.height){
+    int[] temp = {mouseX,mouseY};
+    indivPixels.add(temp);
+    stroke(color(0,0,0));
+      //noStroke();
+    fill(0,0,0);
+    ellipse(mouseX,mouseY,10,10);
   }
-  
 }
 
 void imageSelected(File selection) {
@@ -582,12 +579,13 @@ void imageSelected(File selection) {
     println("An image was not selected");
   }
   else {
-    if (!isImage(selection.toString())){selectInput("Select Image...", "imageSelected");
-      img = loadImage(selection.toString());
-      modeCounter = 0;
-      plane = 7;
-      page = 1;
+    if (!isImage(selection.toString())) {
+      selectInput("Select Image...", "imageSelected");
     }
+    img = loadImage(selection.toString());
+    modeCounter = 0;
+    plane = 7;
+    page = 1;
     // We set up the img here properly
   }
 }
