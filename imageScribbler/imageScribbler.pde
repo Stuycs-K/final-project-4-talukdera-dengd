@@ -14,6 +14,7 @@ int save2RectX, save2RectY;
 int save2RectWidth = 150;
 int save2RectHeight = 50;
 boolean overSave2;
+
 int newHeight;
 int newWidth;
 
@@ -470,7 +471,12 @@ void draw() {
     }
     
     rect(rightRectX, rightRectY, rightRectSize, rightRectSize);
-    
+    if (overSave2) {
+      fill(highlightColor);
+    }
+    else {
+      fill(rectColor);
+    }
     rect(save2RectX, save2RectY, save2RectWidth, save2RectHeight);
     fill(255);
     text("SELECT ANOTHER IMAGE", selectAnotherImageRectX, selectAnotherImageRectY);
