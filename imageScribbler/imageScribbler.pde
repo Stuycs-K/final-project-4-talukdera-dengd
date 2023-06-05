@@ -355,7 +355,7 @@ void draw() {
         if (overSave2) {
       fill(highlightColor);
       if (mousePressed) {
-        img.save("saved");
+        img.save("compress.png");
       }
     }
     else {
