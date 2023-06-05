@@ -236,7 +236,7 @@ void draw() {
     if (overSave) {
       fill(highlightColor);
       if (mousePressed) {
-        img.save("saved");
+        img.save("result.jpg");
       }
     }
     else {
@@ -565,14 +565,19 @@ void mousePressed() {
 
 void mouseDragged() 
 {
-  if (page==1 & draw_mode & mouseX < img.width & mouseY < img.height){
+  if (page==1) {
+    if (draw_mode & mouseX < img.width & mouseY < img.height){
     int[] temp = {mouseX,mouseY};
     indivPixels.add(temp);
     stroke(color(0,0,0));
       //noStroke();
     fill(0,0,0);
     ellipse(mouseX,mouseY,10,10);
-  }
+   }
+ }
+  
+    
+  
 }
 
 void imageSelected(File selection) {
@@ -582,12 +587,15 @@ void imageSelected(File selection) {
   else {
     if (!isImage(selection.toString())) {
       selectInput("Select Image...", "imageSelected");
-    }
-    img = loadImage(selection.toString());
+    } else {
+      img = loadImage(selection.toString());
+      img.resize(1200,600);
     modeCounter = 0;
     plane = 7;
     background(255);
     page = 1;
+    }
+    
     // We set up the img here properly
   }
 }
@@ -687,7 +695,7 @@ void folderSelected(File selection) {
 }
 
 boolean isImage(String a){
-  return a.endsWith("jpg") || a.endsWith("png") || a.endsWith("jpeg");
+  return a.endsWith("jpg") || a.endsWith("png") || a.endsWith("jpeg") || a.endsWith("webp") || a.endsWith("tif");
 }
 
 PImage cropImage(PImage img, int w, int h){
